@@ -1,6 +1,6 @@
 ensemble: formula
 name: memcached
-revision: 9
+revision: 10
 summary: "A high-performance memory object caching system"
 description: 
  Danga Interactive developed memcached to enhance the speed of LiveJournal.com,
@@ -19,3 +19,5 @@ description:
 provides:
   cache:
     interface: memcache
+  munin:
+    interface: munin-node
