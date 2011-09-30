@@ -1,4 +1,3 @@
-ensemble: formula
 name: memcached
 revision: 11
 summary: "A high-performance memory object caching system"
