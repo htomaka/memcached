@@ -1,5 +1,4 @@
 name: memcached
-revision: 11
 summary: "A high-performance memory object caching system"
 description: 
  Danga Interactive developed memcached to enhance the speed of LiveJournal.com,
