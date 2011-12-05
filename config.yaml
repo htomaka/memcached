@@ -1,0 +1,80 @@
+# WARNING! Changing any of these options will result in a restart of
+# memcached, losing all data inside!
+#
+options:
+    size:
+        default: 768
+        description: Size of memcache pool in MiB (memcached option -m)
+        type: int
+    connection-limit:
+        default: 1024
+        description: maximum simultaneous connections (memcached option -c)
+        type: int
+    request-limit:
+        description: |
+            limit of requests a single client can make at one time
+            (memcached option -R) -1 takes memcached default (20)
+        default: -1
+        type: int
+    tcp-port:
+        description: TCP port to listen on. (memcached option -p)
+        default: 11211
+        type: int   
+    udp-port:
+        description: UDP port to listen on (memcached option -U)
+        default: 0
+        type: int
+    disable-auto-cleanup:
+        description: |
+            do not remove things automatically from the cache on OOM
+            (memcached option -M)
+        default: "no"
+        type: string
+    factor:
+        description: |
+            Use <factor> as the multiplier for computing the sizes of memory
+            chunks that items are stored in.  A lower value  may result
+            in less wasted memory depending on the total amount of memory
+            available and the distribution of item size.
+        type: float
+        default: -1
+    min-item-size:
+        description: |
+            Allocate a minimum of <size> bytes for the item key, value,
+            and flags. The default  is  48.  If  you have  a  lot of small
+            keys and values, you can get a significant memory efficiency
+            gain with a lower value. If you use a high chunk growth factor
+            (-f option),  on  the  other  hand,  you  may  want  to
+            increase  the  size  to  allow  a  bigger percentage of your
+            items to fit in the most densely packed (smallest) chunks.
+            (memcached option -n)
+        type: int
+        default: -1
+    disable-cas:
+        description: disable use of CAS (and reduce the per-item size by 8 bytes)
+        default: "no"
+        type: string
+    slab-page-size:
+        description: |
+            Override the size of each slab page in bytes. In mundane
+            words, it adjusts  the  maximum  item  size that  memcached
+            will  accept.  You can use the suffixes K and M to specify
+            the size as well, so use 2000000 or 2000K or 2M if you want
+            a maximum size of 2 MB per object.   It  is  not  recommended
+            to raise this limit above 1 MB due just to performance reasons.
+            The default value is 1 MB. (memcached option -I) -1 takes
+            the memcached default.
+        type: int
+        default: -1
+    threads:
+        description: number of threads to use. default is 4. (memcached option -t)
+        default: -1
+        type: int
+    disable-large-pages:
+        description: The charm will will try to use large pages if given more than 2GB of RAM. You may want to disable this behavior. (memcached option -L)
+        type: string
+        default: "no"
+    extra-options:
+        description: memcached has many other options documented in its man page. You may pass them here as a string which will be appended to memcached's execution.
+        type: string
+        default: ""
