@@ -151,3 +151,5 @@ fi
 if [ $udp_port -gt 0 ] ; then
     open-port $udp_port/UDP
 fi
+# In case port changed, inform consumers
+hooks/cache-relation-joined

@@ -1,2 +1,9 @@
 #!/bin/sh
-relation-set host=`hostname -f` port=11211
+if [ -z "$JUJU_RELATION_ID" ] ; then
+    rids=$(relation-ids cache)
+else
+    rids=$JUJU_RELATION_ID
+fi
+for $rid in $rids ; do
+    relation-set -r $rid host=`unit-get private-address` port=`config-get tcp-port` udp-port=`config-get udp-port`
+done
