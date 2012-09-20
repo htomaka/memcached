@@ -4,6 +4,6 @@ if [ -z "$JUJU_RELATION_ID" ] ; then
 else
     rids=$JUJU_RELATION_ID
 fi
-for $rid in $rids ; do
+for rid in $rids ; do
     relation-set -r $rid host=`unit-get private-address` port=`config-get tcp-port` udp-port=`config-get udp-port`
 done
