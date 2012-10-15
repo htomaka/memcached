@@ -2,6 +2,16 @@
 
 set -e
 
+### BASENODE BEGIN ####
+basenode_setup() {
+    juju-log 'basenode_setup: begin'
+    (cd basenode && python setup.py install)
+    /usr/local/bin/basenode_init
+    juju-log 'basenode_setup: end'
+}
+basenode_setup
+### BASENODE END   ####
+
 DEBIAN_FRONTEND=noninteractive apt-get -y install -qq memcached
 
 cat > /etc/default/memcached <<EOF
