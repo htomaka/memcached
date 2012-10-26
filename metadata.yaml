@@ -20,3 +20,6 @@ provides:
     interface: memcache
   munin:
     interface: munin-node
+  nrpe-external-master:
+    interface: nrpe-external-master
+    scope: container
