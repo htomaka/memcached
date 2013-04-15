@@ -13,7 +13,7 @@ if [[ -d exec.d ]]; then
     done
 fi
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install -qq memcached
+DEBIAN_FRONTEND=noninteractive apt-get -y install -qq memcached python-cheetah
 
 cat > /etc/default/memcached <<EOF
 ENABLE_MEMCACHED=yes
