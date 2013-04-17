@@ -1,9 +1,9 @@
 #!/bin/bash
 set -eux
 
-NAGIOS_HOSTNAME="$(config-get nagios_context)-${JUJU_UNIT_NAME//\//-}"
-NAGIOS_SERVICEGROUP="$(config-get nagios-context)"
-TCP_PORT="$(config-get tcp-port)"
+export NAGIOS_HOSTNAME="$(config-get nagios_context)-${JUJU_UNIT_NAME//\//-}"
+export NAGIOS_SERVICEGROUP="$(config-get nagios-context)"
+export TCP_PORT="$(config-get tcp-port)"
 
 cheetah fill --env -p templates/nrpe_check_memcached.cfg.tmpl > /etc/nagios/nrpe.d/check_memcached.cfg
 cheetah fill --env -p templates/nrpe_export.cfg.tmpl > /var/lib/nagios/export/service__${NAGIOS_HOSTNAME}_check_memcached.cfg
