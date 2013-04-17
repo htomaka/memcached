@@ -1,6 +1,14 @@
 #!/bin/bash
 set -eux
 
+if [ ! -d /usr/local/lib/nagios/plugins ]; then
+    mkdir -p /usr/local/lib/nagios/plugins
+fi
+if [ ! -f /usr/local/lib/nagios/plugins/check_memcache.py ]; then
+    cp files/nrpe-external-master/check_memcache.py /usr/local/lib/nagios/plugins/check_memcache.py
+    chmod 555 /usr/local/lib/nagios/plugins/check_memcache.py
+fi
+
 export NAGIOS_HOSTNAME="$(config-get nagios_context)-${JUJU_UNIT_NAME//\//-}"
 export NAGIOS_SERVICEGROUP="$(config-get nagios-context)"
 export TCP_PORT="$(config-get tcp-port)"
