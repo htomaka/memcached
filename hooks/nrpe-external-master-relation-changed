@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eux
+
+if [ ! -d /usr/local/lib/nagios/plugins ]; then
+    mkdir -p /usr/local/lib/nagios/plugins
+fi
+if [ ! -f /usr/local/lib/nagios/plugins/check_memcache.py ]; then
+    cp files/nrpe-external-master/check_memcache.py /usr/local/lib/nagios/plugins/check_memcache.py
+    chmod 555 /usr/local/lib/nagios/plugins/check_memcache.py
+fi
+
+export NAGIOS_HOSTNAME="$(config-get nagios_context)-${JUJU_UNIT_NAME//\//-}"
+export NAGIOS_SERVICEGROUP="$(config-get nagios-context)"
+export TCP_PORT="$(config-get tcp-port)"
+
+cheetah fill --env -p templates/nrpe_check_memcached.cfg.tmpl > /etc/nagios/nrpe.d/check_memcached.cfg
+cheetah fill --env -p templates/nrpe_export.cfg.tmpl > /var/lib/nagios/export/service__${NAGIOS_HOSTNAME}_check_memcached.cfg
+
+/etc/init.d/nagios-nrpe-server reload
