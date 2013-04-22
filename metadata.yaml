@@ -15,6 +15,7 @@ description:
  of the specific application. Traditionally this has been used in mod_perl
  apps to avoid storing large chunks of data in Apache memory, and to share
  this burden across several machines.
+categories: ["applications"]
 provides:
   cache:
     interface: memcache
