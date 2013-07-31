@@ -19,7 +19,7 @@ options:
     tcp-port:
         description: TCP port to listen on. (memcached option -p)
         default: 11211
-        type: int   
+        type: int
     udp-port:
         description: UDP port to listen on (memcached option -U)
         default: 0
@@ -33,11 +33,11 @@ options:
     factor:
         description: |
             Use <factor> as the multiplier for computing the sizes of memory
-            chunks that items are stored in.  A lower value  may result
-            in less wasted memory depending on the total amount of memory
-            available and the distribution of item size.
+            chunks that items are stored in. A lower value may result in less
+            wasted memory depending on the total amount of memory available
+            and the distribution of item sizes. The default is 1.25.
         type: float
-        default: -1.0
+        default: 1.25
     min-item-size:
         description: |
             Allocate a minimum of <size> bytes for the item key, value,
